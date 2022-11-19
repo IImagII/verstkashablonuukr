@@ -7,17 +7,23 @@
    left: 0;
    z-index: 100;
    &_logo {
+      //так он будет показываться при логотипе
+      position: relative;
+      z-index: 5;
    }
 
    &__container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding-bottom: rem(5);
+      padding-top: rem(5);
       gap: rem(15);
+
       min-height: 123px; //высота шапки как парвило задается так
       //снипед md3 развернет адаптив
       @media (max-width: $mobile) {
-         min-height: 50px;
+         min-height: 60px;
       }
    }
 
@@ -25,31 +31,100 @@
    }
 
    &__button {
-      display: flex;
-      align-items: center;
+      //чтобы доставть кнопку при адаптивном меню
+      position: relative;
+      z-index: 5;
+
+      //тут версткаем кнопку с относительными величинами
+      font-weight: 500;
+      padding: rem(16) rem(24);
+      border: rem(1) solid #f1f1f1;
+      border-radius: rem(8);
+      font-size: rem(14);
+      line-height: math.div(
+         17,
+         14
+      ); //первый параметр это 17 сколько должно быть, воторой параметр 14 скоклько font-size
+      //делаем наведение более плавным
+      transition: all 0.3s ease 0s;
+      @media (any-hover: hover) {
+         &:hover {
+            //меняем цвет текста и цвет фона при наведении
+            color: #fff;
+            background-color: $purpureColor;
+            border: rem(1) solid $purpureColor;
+         }
+      }
+      @media (max-width: $mobile) {
+         padding: rem(15) rem(15);
+         border: rem(1) solid $mainColor;
+         background-color: $mainColor;
+         color: #fff;
+      }
    }
 }
 .menu {
    &__body {
+      //туту мы делаем адаптиное меню фон где оно будет отображаться
+      @media (max-width: $mobile) {
+         position: fixed;
+         top: 0;
+         left: -100%; //для того чтобы меню уехало как бы
+         width: 100%; //это для того чтобы оно занимало все ширину и высоту когдасработаетадаптив
+         height: 100%;
+         overflow: auto;
+         background-color: $purpureColor;
+         //это мы устанавливаем отступы адаптива меню
+         padding: rem(90) rem(15) rem(30) rem(15);
+         //верстаем стили  для открытия и закрытия именно интерактива
+         //сейчас мы отверсткает чтобы при скроле менб красиво ходило вверх и вниз и єто получается типа как header в меню при адаптации
+
+         &::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: -100%; //тоже чтобы меню уежало
+            transition: left 0.3s ease 0s; //чтобы уежало с красивой задержкой
+            width: 100%;
+            height: rem(60);
+            background-color: rgba(89, 130, 219, 0.781);
+            z-index: 2;
+         }
+         .menu-open & {
+            left: 0; //для того чтобы меню возвращалось при нажатии
+            &::before {
+               left: 0;
+            }
+         }
+      }
    }
 
    &__list {
-      display: flex;
-      flex-wrap: wrap;
-      row-gap: rem(5);
-
-      //  @include adaptiveValue(
-      //     'gap',
-      //     56,
-      //     15,
-      //     0,
-      //     1200,
-      //     768
-      //  ); // снипед av-это миксин для адаптации есть в документации
-      gap: rem(56);
+      //это тоже нужно для адаптива чтобы ссылки выстроились в ряд
+      @media (min-width: $mobile) {
+         display: flex;
+         flex-wrap: wrap;
+         row-gap: rem(5);
+         //  @include adaptiveValue(
+         //     'gap',
+         //     56,
+         //     15,
+         //     0,
+         //     1200,
+         //     768
+         //  ); // снипед av-это миксин для адаптации есть в документации
+         gap: rem(56);
+      }
    }
 
    &__item {
+      //так мы выравниваем ссылки по центру
+      text-align: center;
+      @media (max-width: $mobile) {
+         &:not(:last-child) {
+            margin-bottom: rem(20);
+         }
+      }
    }
 
    &__link {
@@ -61,6 +136,11 @@
          &:hover {
             color: $purpureColor;
          }
+      }
+      //туту мы адаптируем ссылки когда менб будет для мобильных устройств
+      @media (max-width: $mobile) {
+         color: #fff;
+         font-size: rem(24);
       }
    }
 }

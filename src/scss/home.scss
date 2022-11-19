@@ -1,3 +1,64 @@
 //====================================================================================================
+//Стилизация section(2)
+.main-section {
+   &__container {
+      display: grid;
+      min-height: 100%;
+      align-items: center;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: rem(203);
+   }
 
+   &__content {
+   }
+
+   &__title {
+   }
+
+   &__text {
+      font-weight: 400;
+      margin-top: rem(32);
+      font-size: rem(16);
+      line-height: math.div(32, 16);
+      margin-bottom: rem(42);
+   }
+}
+.decor-main-section {
+   //это мы сделали контейнер для того тчобы сделать декорацции с квадратами то ест относительно жтого класса будет делаться
+   max-width: 336px; //делаем амксимальный контейнер для светлого квадрата который находиться на изображением пацана
+   justify-self: end; //утсановка картинки справа
+   width: 100%;
+   &__image {
+      //  margin: 0 0 0 auto;
+      position: relative; //задаем относительно какой картинке будет происходить позиционирование
+      //делаем стили для квадратов сзади для белого
+      padding-bottom: percent(400, 336);
+      &::before,
+      &::after {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         border-radius: rem(16);
+      }
+      &::before {
+         z-index: 1;
+      }
+      &::after {
+         //верстаем сам белый фон сзади первый фон
+         z-index: 2;
+         background-color: #eae6fe;
+      }
+   }
+   &__picture {
+      //это стили для самой картинки пацана
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      max-width: 100%;
+      z-index: 5;
+   }
+}
 //====================================================================================================

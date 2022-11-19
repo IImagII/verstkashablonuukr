@@ -26,5 +26,40 @@
       font-weight: 700;
       font-size: rem(36);
       line-height: 1.25; //45:36=1.25 было соответственно line-height: 45px;
+      span {
+         color: $purpureColor;
+      }
+      &_big {
+         font-size: rem(44);
+         line-height: math.div(55, 44);
+      }
+   }
+}
+.text {
+   line-height: math.div(32, 16);
+}
+.page {
+   &__main {
+   }
+}
+
+.social {
+   //тут установим картинки как они в макете по горизонтали и по центру и даем им возможность переходить на другую строку
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   //таким свойством делаем адаптивное расстояние между иконками
+   row-gap: rem(5);
+   @include adaptiveValue('column-gap', 34, 15);
+   // адаптивное стилизация расстояния
+   &__link {
+      font-size: rem(24); //именно это увеличиваем размер иконок
+      transition: all 0.3s ease 0s; //это более плавная срабатывание стиля hover
+      @media (any-hover: hover) {
+         //тут добавили наведение на иконки
+         &:hover {
+            color: $purpureColor;
+         }
+      }
    }
 }
