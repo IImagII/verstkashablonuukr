@@ -5,41 +5,12 @@
       <div class="wrapper">
          @@include('html/_header.htm',{})
          <main class="page">
-            <!-- структура второго блока -->
             <section class="page__main main-section">
-               <div class="main-section__container">
-                  <div class="main-section__content">
-                     <!-- делаем переиспользованный патерн  -->
-                     <div class="main-section__title title">
-                        <div class="title__label">MY NAME IS</div>
-                        <h1 class="title__value title__value_big">
-                           Alex <span>Smith.</span>
-                        </h1>
-                        <!-- плагин для копирования eSCCtractor CRTL+ALT+1-->
-                     </div>
-                     <div class="main-section__text text">
-                        Creative front-end developer with more than +5 years of
-                        experience in enterprise companies and startups.
-                        Proficient in JavaScript, Angular,<br />
-                        and React. Passionate about UI/UX
-                     </div>
-                     <div class="main-section__social social">
-                        <a href="" class="social__link _icon-s-instagram"></a>
-                        <a href="" class="social__link _icon-s-github"></a>
-                        <a href="" class="social__link _icon-s-twitter"></a>
-                        <a href="" class="social__link _icon-s-linkedin"></a>
-                     </div>
-                  </div>
-                  <div class="main-section__decor decor-main-section">
-                     <div class="decor-main-section__image">
-                        <img
-                           class="decor-main-section__picture"
-                           src="@img/main/person.png"
-                           alt="person"
-                        />
-                     </div>
-                  </div>
-               </div>
+               @@include('html/_section1.htm',{"second":"Общая информация о
+               клиенте"})
+            </section>
+            <section class="page__services services">
+               @@include('html/_section2.htm',{"second":"Скилы клиента"})
             </section>
          </main>
          @@include('html/_footer.htm',{})
