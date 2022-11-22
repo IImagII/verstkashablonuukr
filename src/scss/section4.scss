@@ -1,0 +1,47 @@
+.career {
+   background: #fbfbfb;
+   &__container {
+      //выстраиваем общюю сетку куда юудет входить и заголовок исодержимое
+      padding-bottom: rem(126);
+      padding-top: rem(80);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-content: center;
+      grid-auto-flow: column;
+      grid-template-rows: auto auto;
+      @include adaptiveValue(
+         'column-gap',
+         144,
+         20
+      ); //так делаются отступы если на grid
+      @include adaptiveValue('row-gap', 80, 20);
+   }
+
+   &__title {
+   }
+
+   &__navigation {
+      display: flex;
+      flex-wrap: wrap;
+   }
+
+   &__content {
+      grid-row: span 2;
+   }
+}
+.title {
+   &__label {
+   }
+
+   &__value {
+   }
+}
+.navigation-career {
+   &__title {
+   }
+}
+
+.content-career {
+   &__body {
+   }
+}

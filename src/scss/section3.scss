@@ -13,15 +13,25 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: rem(144);
-   }
-
-   &__title {
+      @include adaptiveValue(
+         'margin-bottom',
+         144,
+         30
+      ); //делаем адаптивный отступ
+      @media (max-width: em(600)) {
+         align-items: stretch;
+         flex-direction: column;
+      }
    }
 
    &__controls {
       display: flex;
       align-items: center;
       gap: rem(16); //расстояние между кнопками
+      @media (max-width: em(600)) {
+         flex: 1 1 auto;
+         justify-content: center;
+      }
    }
 
    &__arrow {
@@ -43,34 +53,61 @@
       &_left {
          transform: rotate(180deg);
       }
-
-      &_right {
+      //тут мы конкретно сделали стили для когда кнопка доходит до конца и заканчиваются слайды
+      &.swiper-button-disabled {
+         opacity: 0.5;
+         cursor: default;
       }
    }
 }
 .portfolio {
    &__slider {
+      margin-bottom: rem(182);
+      @include adaptiveValue('margin-bottom', 182, 20);
+      @media (max-width: em(600)) {
+         margin-right: rem(-15); //убераем отступ справа при уменьшении экрана
+      }
    }
+}
 
-   &__wrapper {
-   }
-
-   &__slide {
-   }
-}
-.swiper {
-}
-.swiper-wrapper {
-}
-.swiper-slide {
-   display: flex;
-   gap: rem(56);
-}
 .item-portfolio {
-   &__image {
-   }
+   border: 1px solid #f5f5f5;
+   border-radius: rem(8);
+   overflow: hidden; //чтобы этот стиль заработал для всей картки
+   display: flex;
+   flex-direction: column;
+   min-height: 100%;
 
+   //стили для картинки
+   &__image-ibg {
+      overflow: hidden;
+      opacity: 0.5; //чттобы сделать как по макету прозрачность на 50%
+      transition: opacity 0.8s ease 0s;
+      padding-bottom: percent(
+         295,
+         361
+      ); //это длеается для вычисления картинки размера этим мы какбы прячем картику она у нас наежает на надписи
+      img {
+         object-position: top; //так устанаваливаем картинку чтобы она начиналась именно сверху
+         transition: all 0.8s ease 0s;
+      }
+      @media (any-hover: hover) {
+         &:hover {
+            opacity: 1; //при наведении мы возвращаем картике ее цвет
+            img {
+            }
+            transform: scale(1.05); //увеличивает изображение
+         }
+      }
+      @media (any-hover: none) {
+         opacity: 1; // намаленьких экранах пропадает прозрачность
+      }
+   }
    &__body {
+      background: #fff;
+      border-radius: 0px 0px 8px 8px;
+      border-color: #f5f5f5;
+      padding: rem(24);
    }
 
    &__title {
@@ -78,25 +115,46 @@
       font-weight: 500;
       font-size: rem(16);
       line-height: math.div(20, 16);
+      margin-bottom: rem(16);
+      @media (any-hover: hover) {
+         &:hover {
+            text-decoration: underline; //при наведении будет как бы подчеркивать
+         }
+      }
    }
 
    &__link {
       color: #656d72;
    }
-
+   &__link-icon {
+      color: #656d72;
+      font-size: rem(19);
+      transition: color 0.3s ease 0s;
+      @media (any-hover: hover) {
+         &:hover {
+            color: $purpureColor;
+         }
+      }
+   }
    &__footer {
       display: flex;
       align-items: center;
       gap: rem(16);
    }
-
-   &__category {
-      color: #656d72;
-      font-weight: 500;
-      font-size: rem(12);
-      line-height: math.div(15, 12);
-      padding: rem(4) rem(8) rem(4) rem(8);
-      border: 1px solid #f1f1f1;
-      border-radius: rem(4);
+}
+.category-link {
+   color: #656d72;
+   font-weight: 500;
+   font-size: rem(12);
+   line-height: math.div(15, 12);
+   padding: rem(4) rem(8) rem(4) rem(8);
+   border: 1px solid #f1f1f1;
+   border-radius: rem(4);
+   transition: color 0.3s ease 0s;
+   @media (any-hover: hover) {
+      &:hover {
+         border: 1px solid rgb(233, 219, 219);
+         color: #656d72;
+      }
    }
 }
