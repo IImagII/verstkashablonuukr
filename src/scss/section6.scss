@@ -1,0 +1,88 @@
+.testim {
+   background: #fbfbfb;
+   &__container {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: rem(153);
+      @include adaptiveValue('padding-top', 95, 35);
+   }
+
+   &__title {
+      @include adaptiveValue('margin-bottom', 132, 70);
+   }
+
+   &__items {
+      display: grid;
+      align-self: stretch;
+      grid-template-columns: repeat(
+         auto-fill,
+         minmax(rem(280), 1fr)
+      ); //делаем три колонки при гридах
+      @include adaptiveValue(
+         'column-gap',
+         40,
+         20
+      ); //делаем разные отступы аватарампо горизонтали и по вертикали
+      @include adaptiveValue('row-gap', 80, 60);
+   }
+
+   &__item {
+      background: #ffffff;
+      border-radius: rem(8);
+      padding-bottom: rem(24);
+      display: grid;
+      @include adaptiveValue('padding-left', 32, 10);
+      @include adaptiveValue('padding-right', 52, 10);
+      @include adaptiveValue('margin-button', 153, 50);
+   }
+}
+
+.item-testim {
+   display: flex; //для того чтобы работало свойство по прибиванию текста к низу
+   flex-direction: column;
+   border-radius: 8px;
+   &__avatar-ibg {
+      align-self: center;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      overflow: hidden;
+      width: rem(96);
+      height: rem(96);
+      transform: translate(0px, -50%);
+   }
+
+   &__text {
+      color: #232e35;
+      flex: 1 1 auto; //чтобы при увеличении текста прибивалось к низу
+      font-weight: 400;
+      font-size: rem(16);
+      line-height: math.div(28, 16);
+      &:not(:last-child) {
+         margin-bottom: rem(48);
+      }
+   }
+
+   &__name {
+      color: #232e35;
+      font-weight: 500;
+      font-size: rem(14);
+      line-height: math.div(18, 14);
+      &:not(:last-child) {
+         margin-bottom: rem(9);
+      }
+   }
+
+   &__professional {
+      color: #656d72;
+      font-weight: 500;
+      font-size: rem(12);
+      line-height: math.div(15, 12);
+      padding: rem(4) rem(8);
+      background: #fbfbfb;
+      border-radius: rem(4);
+      align-self: flex-start; //при грридах делаем по контексту
+      &:not(:last-child) {
+         margin-bottom: rem(24);
+      }
+   }
+}

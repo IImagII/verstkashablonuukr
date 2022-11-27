@@ -4,44 +4,174 @@
       //выстраиваем общюю сетку куда юудет входить и заголовок исодержимое
       padding-bottom: rem(126);
       padding-top: rem(80);
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-content: center;
-      grid-auto-flow: column;
-      grid-template-rows: auto auto;
-      @include adaptiveValue(
-         'column-gap',
-         144,
-         20
-      ); //так делаются отступы если на grid
-      @include adaptiveValue('row-gap', 80, 20);
    }
 
    &__title {
    }
 
    &__navigation {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid; //деалем стили для табов
+      // gap: rem(
+      //    9
+      // ); // убераем это для того чтобы сделать адаптив табов под сполеры и переносим в другой класс .navigation-career
    }
 
    &__content {
       grid-row: span 2;
+      @media (min-width: $mobile) {
+         grid-row: span 2;
+      }
+   }
+   &__body {
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: auto;
+      @include adaptiveValue(
+         'column-gap',
+         144,
+         20
+      ); //так делаются отступы если на grid
+      @include adaptiveValue('row-gap', 80, 20);
+      //тут делаем адаптив под мобилку
+      @media (min-width: $mobile) {
+         grid-template-rows: auto 1fr;
+         grid-template-columns: auto 1fr;
+         align-content: center;
+         grid-auto-flow: column;
+         align-items: start;
+      }
    }
 }
-.title {
-   &__label {
-   }
 
-   &__value {
-   }
-}
 .navigation-career {
    &__title {
+      width: 100%; // добаляем для того чтобі сделать табі сполерами
+      text-align: left; // деалем нопки табуляции с левой стороны
+      padding: rem(14) rem(24);
+      color: #232e35;
+      font-weight: 400;
+      font-size: rem(16);
+      line-height: math.div(19, 16);
+      gap: rem(9); //перенесли с другого класса для сполеров
+      //это стили для актвного таба когда на него нажимаешь
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &::after {
+         @extend %ic;
+         content: '\e903';
+         font-size: rem(12);
+         ._tab-spoller & {
+            transform: rotate(90deg); //стили стрелочки когда не активны табы
+         }
+      }
+      &._tab-active {
+         background-color: #fff;
+         border-radius: rem(4);
+         color: $purpureColor;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         //делаем стрелочку та что справа
+         &::after {
+            @extend %ic;
+            content: '\e903';
+            font-size: rem(12);
+            ._tab-spoller & {
+               transform: rotate(
+                  -90deg
+               ); //добавляемдля того тчобы стреловка перевернулась при мобильном меню
+            }
+         }
+      }
    }
 }
 
 .content-career {
    &__body {
+   }
+
+   &__header {
+      border-bottom: 1px solid #f1f1f1;
+      @include adaptiveValue('padding-bottom', 32, 12);
+   }
+
+   &__title {
+      font-weight: 500;
+      font-size: rem(18);
+      line-height: math.div(23, 18);
+      &:not(:last-child) {
+         margin-bottom: rem(8);
+      }
+   }
+
+   &__location {
+      color: #656d72;
+      font-weight: 400;
+      font-size: rem(14);
+      line-height: math.div(17, 14);
+      &:not(:last-child) {
+         margin-bottom: rem(16);
+      }
+   }
+
+   &__time {
+      color: #656d72;
+      font-weight: 500;
+      font-size: rem(14);
+      line-height: math.div(24, 14);
+      &:not(:last-child) {
+         margin-bottom: rem(16);
+      }
+   }
+
+   &__categories {
+   }
+
+   &__main {
+      padding-top: rem(32);
+   }
+
+   &__list {
+   }
+}
+.categories {
+   display: flex;
+   &__link-title {
+      text-decoration-line: underline !important;
+   }
+
+   &__link {
+      color: #656d72;
+      font-weight: 500;
+      font-size: rem(12);
+      line-height: math.div(15, 12);
+      padding: rem(4) rem(8);
+      border-radius: rem(4);
+      border: 1px solid #f1f1f1;
+      margin-right: rem(16);
+   }
+}
+.list-content-career {
+   &__item {
+      font-weight: 400;
+      font-size: rem(16);
+      line-height: math.div(19, 16);
+      color: #656d72;
+      &:not(:last-child) {
+         margin-bottom: rem(16);
+      }
+      position: relative;
+      padding-left: rem(28);
+      //делаем рисочку на макете
+      &::before {
+         content: '';
+         background-color: #d9d9d9;
+         width: rem(10);
+         height: rem(2);
+         position: absolute;
+         left: 0;
+         top: em(10, 16);
+      }
    }
 }

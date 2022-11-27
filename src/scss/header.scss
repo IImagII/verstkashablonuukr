@@ -24,7 +24,7 @@
       padding-top: rem(5);
       gap: rem(15);
 
-      min-height: 123px; //высота шапки как парвило задается так
+      min-height: 65px; //высота шапки как парвило задается так
       //снипед md3 развернет адаптив
       @media (max-width: $mobile) {
          min-height: 60px;

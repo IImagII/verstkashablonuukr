@@ -1,0 +1,124 @@
+.blog {
+   &__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: rem(30);
+      padding-top: rem(95);
+   }
+
+   &__title {
+      &:not(:last-child) {
+         @include adaptiveValue('margin-bottom', 144, 30);
+      }
+   }
+   &__items {
+      display: grid;
+      align-self: stretch;
+      grid-template-columns: repeat(auto-fill, minmax(rem(280), 1fr));
+      @include adaptiveValue('gap', 40, 15);
+   }
+   &__item {
+   }
+}
+
+.title {
+   &__label {
+   }
+
+   &__value {
+   }
+}
+.item-blog {
+   min-height: 100%;
+   display: flex; //чтобы картинка появилась нужно постаавить это
+   flex-direction: column; //чтобы картинка появилась нужно постаавить это
+   border-width: 0px 1px 1px 1px;
+   border-style: solid;
+   border-color: #f1f1f1;
+   border-radius: rem(8);
+   overflow: hidden; //для того чтобы притменилось как родитель для всего контента внутри
+   &__image-ibg {
+      overflow: hidden;
+      padding-bottom: percent(
+         243,
+         361
+      ); //чтобы картинка появилась нужно постаавить это
+      &:not(:last-child) {
+         margin-bottom: rem(16);
+      }
+      img {
+         transition: transform 0.3s ease 0s;
+      }
+
+      @media (any-hover: hover) {
+         &:hover {
+            img {
+               transform: scale(1.05); //увеличение картинки
+            }
+         }
+      }
+   }
+
+   &__body {
+      padding: rem(0) rem(15) rem(24) rem(15);
+      display: grid;
+   }
+
+   &__title {
+      &:not(:last-child) {
+         margin-bottom: rem(16);
+      }
+   }
+
+   &__lonk-title {
+      color: #232e35;
+      font-weight: 500;
+      font-size: rem(16);
+      line-height: math.div(24, 16);
+      transition: color 0.3s ease 0s;
+      @media (any-hover: hover) {
+         &:hover {
+            color: $purpureColor;
+         }
+      }
+   }
+
+   &__date {
+      color: #656d72;
+      justify-self: start; // сделает по соедржимому при элементе grid
+      font-weight: 500;
+      font-size: rem(12);
+      border-radius: rem(4);
+      background: #fbfbfb;
+      padding: rem(4) rem(8);
+      line-height: math.div(15, 12);
+      &:not(:last-child) {
+         margin-bottom: rem(16);
+      }
+   }
+
+   &__text {
+      color: $secondColor;
+      font-weight: 400;
+      font-size: rem(16);
+      line-height: math.div(32, 16);
+      &:not(:last-child) {
+         margin-bottom: rem(42);
+      }
+   }
+
+   &__link {
+      color: $secondColor;
+      font-size: rem(14);
+      line-height: math.div(17, 14);
+      justify-self: center; // выравниваем по центру элемент внутри блока grid
+      transition: color 0.3s ease 0s; //обязательно для анимации наведения
+      @media (any-hover: hover) {
+         &:hover {
+            color: $purpureColor;
+         }
+      }
+   }
+}
